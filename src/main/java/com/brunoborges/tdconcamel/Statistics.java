@@ -13,43 +13,43 @@ import java.util.Date;
  */
 public class Statistics {
 
-    private Date startedOn = Calendar.getInstance().getTime();
-    private long tweetCount = 0L;
-    private long imageCount = 0L;
-    private String keywords;
+	private Date startedOn = Calendar.getInstance().getTime();
+	private long tweetCount = 0L;
+	private long imageCount = 0L;
+	private String keywords;
 
-    void increaseTweetCount() {
-        tweetCount++;
-    }
+	void increaseTweetCount() {
+		this.tweetCount++;
+	}
 
-    void increaseImageAndTweetCount() {
-        increaseTweetCount();
-        imageCount++;
-    }
+	void increaseImageAndTweetCount() {
+		this.increaseTweetCount();
+		this.imageCount++;
+	}
 
-    public String getKeywords() {
-        return keywords;
-    }
-    
-    public void setKeywords(String arg) {
-        this.keywords = arg;
-    }
+	public String getKeywords() {
+		return this.keywords;
+	}
 
-    public long getImageCount() {
-        return imageCount;
-    }
+	public void setKeywords(String arg) {
+		this.keywords = arg;
+	}
 
-    public long getTweetCount() {
-        return tweetCount;
-    }
+	public long getImageCount() {
+		return this.imageCount;
+	}
 
-    public long getStartedOn() {
-        return this.startedOn.getTime();
-    }
+	public long getTweetCount() {
+		return this.tweetCount;
+	}
 
-    public void clear() {
-        tweetCount = 0;
-        imageCount = 0;
-    }
+	public long getStartedOn() {
+		return this.startedOn.getTime();
+	}
+
+	public void clear() {
+		this.tweetCount = 0;
+		this.imageCount = 0;
+	}
 
 }
