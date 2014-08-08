@@ -12,20 +12,16 @@ public class ImageExtractor implements Processor {
 
 	@Override
 	public void process(Exchange exchange) {
-		try {
-			Status status = exchange.getIn().getBody(Status.class);
+		Status status = exchange.getIn().getBody(Status.class);
 
-			MediaEntity[] mediaEntities = status.getMediaEntities();
-			if (mediaEntities != null && mediaEntities.length >= 0) {
-				MediaEntity mediaEntity = mediaEntities[0]; // only the first image
+		MediaEntity[] mediaEntities = status.getMediaEntities();
+		if (mediaEntities != null && mediaEntities.length > 0) {
+			MediaEntity mediaEntity = mediaEntities[0]; // only the first image
 
-				exchange.getIn().setBody(
-						new Tweet().withName(status.getUser().getScreenName()).withText(status.getText())
-								.withUrl(mediaEntity.getMediaURL().toString()));
+			exchange.getIn().setBody(
+					new Tweet().withName(status.getUser().getScreenName()).withText(status.getText()).withUrl(mediaEntity.getMediaURL().toString()));
 
-				exchange.getIn().setHeader(TDCOnCamelRoute.UNIQUE_IMAGE_URL, mediaEntity.getMediaURL().toString());
-			}
-		} catch (Exception doNothing) {
+			exchange.getIn().setHeader(TDCOnCamelRoute.UNIQUE_IMAGE_URL, mediaEntity.getMediaURL().toString());
 		}
 	}
 }
